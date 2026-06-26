@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "108046063250",
+    "project_id": "ani-agad1",
+    "storage_bucket": "ani-agad1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108046063250:android:74983c29498b73ef1af84b",
+        "android_client_info": {
+          "package_name": "com.wayne.ani_agad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9ywWbqaII4CxKelAWlxBv1SIHo7wHqyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
