@@ -1,8 +1,9 @@
-package com.example.myapplication.data
+package com.wayne.ani_agad.data
 
 import android.content.Context
 import androidx.room.Dao
 import androidx.room.Database
+import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -16,22 +17,27 @@ import kotlinx.coroutines.flow.Flow
 data class CropBatch(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    val ownerId: String,
     val cropType: String,
     val batchName: String,
     val containerCount: Int,
+    val growthMethod: String, // New field for version 3
     val datePlanted: Long
 )
 
 @Dao
 interface CropDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCropBatch(cropBatch: CropBatch)
+    suspend fun insertCropBatch(cropBatch: CropBatch): Long
 
-    @Query("SELECT * FROM crop_batches ORDER BY cropType ASC, datePlanted DESC")
-    fun getAllCropBatches(): Flow<List<CropBatch>>
+    @Delete
+    suspend fun deleteCropBatch(cropBatch: CropBatch)
+
+    @Query("SELECT * FROM crop_batches WHERE ownerId = :userId ORDER BY datePlanted DESC")
+    fun getAllCropBatches(userId: String): Flow<List<CropBatch>>
 }
 
-@Database(entities = [CropBatch::class], version = 1, exportSchema = false)
+@Database(entities = [CropBatch::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cropDao(): CropDao
 

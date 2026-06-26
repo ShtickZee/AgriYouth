@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.wayne.ani_agad
 
 import org.junit.Test
 
